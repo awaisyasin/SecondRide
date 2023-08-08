@@ -1,0 +1,68 @@
+{% extends "Ads/base.html" %}
+
+{% block content %}
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <form method="GET" action="{% url 'Ads:home' %}">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="brand">Brand:</label>
+                            <select class="form-control" id="brand" name="brand">
+                                <option value="">All Brands</option>
+                                {% for brand in brands %}
+                                    <option value="{{ brand.id }}">{{ brand.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="model">Model:</label>
+                            <select class="form-control" id="model" name="model">
+                                <option value="">All Models</option>
+                                {% for model in models %}
+                                    <option value="{{ model.id }}">{{ model.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="date">Date:</label>
+                            <input type="date" class="form-control" id="date" name="date">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary mt-4">Filter</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        {% for ad in ads %}
+            <!-- Card rendering code here -->
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for ad in ads %}
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem; display: flex; flex-direction: column; height: 100%;">
+                    <img src="{{ ad.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body" style="flex-grow: 1;">
+                        <h5 class="card-title">{{ ad.title }}</h5>
+                        <p class="card-text" style="height: 20px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ ad.description }}</p>
+                        <a href="{% url 'Ads:addetail' ad.id %}" class="btn btn-primary" style="margin-top: auto;">See details</a>
+                    </div>
+                </div>
+            </div>
+
+            {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                </div><div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

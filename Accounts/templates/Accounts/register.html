@@ -1,0 +1,14 @@
+{% extends "Accounts/base.html" %}
+
+{% block content %}
+	<h1>Fill out the form to register</h1>
+    <form method="POST" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" class="btn btn-primary" style="margin-bottom: 24px;">
+    </form>
+	<strong>Already have an account? Login here!</strong><p></p>
+	<a href="{% url 'Accounts:login' %}"><button  class="btn btn-warning" style="margin-bottom: 24px;">Login here</button></a><br>
+    <strong>Want to go back home? Go back!</strong><p></p>
+	<a href="{% url 'Ads:home' %}"><button  class="btn btn-warning" style="margin-bottom: 24px;">Go Back</button></a>
+{% endblock %}

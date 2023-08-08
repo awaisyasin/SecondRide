@@ -1,0 +1,20 @@
+{% extends "Ads/base.html" %}
+
+{% block content %}
+<div class="card mb-3">
+	<img src="{{ ad.image.url }}" class="card-img-top" alt="..." style="width: 100px; height: 100px;">
+	<div class="card-body">
+		<h5 class="card-title"> {{ ad.title }} </h5>
+		<strong>{{ form.model.label_tag }} </strong>{{ ad.model }} <br>
+		<strong>{{ form.price.label_tag }} </strong>${{ ad.price }} <br>
+		<strong>{{ form.description.label_tag }} </strong>{{ ad.description }} <br>
+		{% if user.is_authenticated %}
+		<strong>{{ form.contact.label_tag }} </strong>{{ ad.contact }} <br>
+		{% else %}
+		<strong><a href="{% url 'Accounts:login' %}"> Login to see contact details </a></strong>
+		{% endif %}
+		<p class="card-text"><small class="text-body-secondary">{{ ad.published_at }}</small></p>
+	</div>
+</div>
+<a href="{% url 'Ads:home' %}"><button  class="btn btn-warning" style="margin-bottom: 24px;">Go Back</button></a>
+{% endblock %}

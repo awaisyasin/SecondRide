@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<title>Second Ride</title>
+		<style>
+			.centered-text {
+				display: flex;
+				justify-content: center;
+				margin-top: 10px;
+			}
+
+			.login-link {
+				font-size: inherit;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- Header -->
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<div class="container">
+					<a class="navbar-brand" href="{% url 'Ads:home' %}">Second Ride</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+						aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'Ads:home' %}">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'Ads:form' %}">Post Ad</a>
+							</li>
+							{% if not user.is_authenticated %}
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'Accounts:login' %}">Login</a>
+							</li>
+							{% endif %}
+							{% if user.is_authenticated %}
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'Accounts:logout' %}">Logout</a>
+							</li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="strip"></div>
+			{% if request.path != "/form/" %}
+			{% if not user.is_authenticated %}
+			<div class="centered-text">
+				<a class="login-link" href="{% url 'Accounts:login' %}"><span
+						style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; border-radius: 4px; text-decoration: none; cursor: pointer;">Login
+						to post Ad</a></span>
+			</div>
+			{% else %}
+			<div class="centered-text">
+				<a class="login-link" href="{% url 'Ads:form' %}"><span
+						style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; border-radius: 4px; text-decoration: none; cursor: pointer;">Post Ad</a></span>
+			</div>
+			{% endif %}
+			{% endif %}
+		</header>
+
+
+		<!-- Main Content -->
+
+		<div class="container mt-4">
+			{% block content %}
+
+			{% endblock %}
+		</div>
+
+
+		<!-- Footer -->
+		<footer class="bg-dark text-white py-4">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<h5>About Us</h5>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod vehicula justo ac
+							ultricies.</p>
+					</div>
+					<div class="col-md-6">
+						<h5>Contact Us</h5>
+						<p>123 Main Street, City, Country</p>
+						<p>Email: info@example.com</p>
+						<p>Phone: +1 234 567 890</p>
+					</div>
+				</div>
+			</div>
+			<div class="text-center bg-dark py-2">
+				<p>&copy; 2023 Your Company. All rights reserved.</p>
+			</div>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</body>
+
+</html>

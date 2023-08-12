@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .form import CustomUserCreationForm, CustomAuthenticationForm
+from django.contrib import messages
 
 # Create your views here.
 def RegisterView(request):
@@ -34,3 +35,8 @@ def LoginView(request):
 def LogoutView(request):
     logout(request)
     return redirect("Ads:home")
+
+def DeleteView(request):
+    request.user.delete()
+    messages.success(request, 'Your account has been deleted Successfully!')
+    return redirect("Accounts:register")

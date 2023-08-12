@@ -22,6 +22,8 @@
         </div>
         <input type="submit" value="Submit" class="btn btn-primary" style="margin-bottom: 24px;">
     </form>
+	<strong>Forgot your Password?</strong><p></p>
+	<a href="{% url 'password_reset' %}"><button  class="btn btn-warning" style="margin-bottom: 24px;">Reset Password</button></a><br>
 	<strong>Don't have an account? Create one!</strong><p></p>
 	<a href="{% url 'Accounts:register' %}"><button  class="btn btn-warning" style="margin-bottom: 24px;">Create account</button></a><br>
     <strong>Want to go back home? Go back!</strong><p></p>

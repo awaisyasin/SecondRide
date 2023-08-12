@@ -53,10 +53,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "core.urls"
 
+TEMPLATE_DIR = BASE_DIR / 'templates'
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [TEMPLATE_DIR,],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -126,3 +128,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'info@secondride.com'

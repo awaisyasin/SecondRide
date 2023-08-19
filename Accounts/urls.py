@@ -8,4 +8,5 @@ urlpatterns = [
     path("login/", views.LoginView, name="login"),
     path("logout/", views.LogoutView, name="logout"),
     path("delete/", views.DeleteView, name="delete"),
+    path("verify-email/<str:token>/", views.VerifyEmail, name="verify_email"),
 ]

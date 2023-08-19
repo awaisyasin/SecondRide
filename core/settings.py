@@ -129,5 +129,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# DEFAULT_FROM_EMAIL = 'info@secondride.com'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'postmaster@sandbox56f73463933743f1b018f9f381445f54.mailgun.org'
+EMAIL_HOST_PASSWORD = 'f6e1f55b1e561e9317a0625c483355df-ee16bf1a-7c3572a2'
+EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'info@secondride.com'
+
+AUTH_USER_MODEL = "Accounts.CustomUser"
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
